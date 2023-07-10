@@ -1,0 +1,402 @@
+
+from cgi import print_form
+import decimal as D
+from numbers import Integral, Number
+import string
+from tkinter.ttk import *
+import numpy as np
+import tkinter as tk
+
+from tkinter.constants import NUMERIC, TRUE
+from tkinter.font import BOLD
+from typing import Text, TextIO
+from tkinter import messagebox
+
+
+window =tk.Tk()
+window.geometry("1000x700")
+window.title('CTDIvol calculator By A.Refaat')
+window.resizable(0,0)
+
+
+
+
+x1 = tk.Label(window,
+    text= " CTDIvol calculatior" ,
+     background= "light green"
+     ,width=20
+     ,height=3
+     ,font=("arial" , 15 ) ).place(x=400,y=0)
+
+
+
+x2=tk.Label(window,
+    text= "kv" 
+     ,font=("arial" , 15 ) ).place(x=2,y=50)
+
+def option_changed(a):
+      print ("the user chose the value {}" .format(variable.get()))
+      print (a)
+a = " "
+variable = tk.StringVar(window)
+variable.set("120") # default value
+variable.trace("w", option_changed(a))
+entry2 = tk.OptionMenu(window,variable,"80","100","110","120","140" ).place(x=30,y=50)  
+
+
+x3=tk.Label(window,
+    text= "mAs" 
+     ,font=("arial" , 15 ) ).place(x=2,y=90)
+
+entry3 = tk.Entry(window,NUMERIC= x3).place(x=160,y=95)      
+
+x4=tk.Label(window,
+    text= "N data channels (N)" 
+     ,font=("arial" , 12 ) ).place(x=2,y=120)
+
+entry4 = tk.Entry(window,NUMERIC= x4).place(x=160,y=125)      
+
+x5=tk.Label(window,
+    text= "Z axis collimation (T)" 
+     ,font=("arial" , 12 ) ).place(x=2,y=150)
+
+entry5 =tk.Entry(window,NUMERIC= x5).place(x=160,y=155)      
+
+x6=tk.Label(window,
+    text= "NxT " 
+     ,font=("arial" , 12 ) ).place(x=2,y=200)
+
+
+refrance1 =tk.Label(window,text= "calculation refrance    TRS 457" ,font=("arial" , 15 ) ).place(x=720,y=670)
+
+#contact= tk.Label(window,    text= " Whats APP: 01008881955     mail: Ahmadrefaat790@gmail.com " ,     background= "light green"     ,width=20
+ #    ,height=3
+   #   ,font=("arial" , 15 ) ).place(x=400,y=0)
+
+
+
+
+def option_changed(b):
+     print ("the user chose the value {}" .format(variable.get()))
+     print (b)
+
+
+b = ""
+variable = tk.StringVar(window)
+variable.set("0.625") # default value
+variable.trace("w", option_changed(b))
+entry2 = tk.OptionMenu(window,variable,"0.625 mm","1.25 mm","2.5 mm","5 mm","6 mm","10 mm" ).place(x=10,y=220)
+
+
+
+
+x7=tk.Label(window,
+    text= "helical pitch" 
+     ,font=("arial" , 12 ) ).place(x=2,y=255)     
+
+xa7=tk.Label(window,
+    text= "X1000" 
+     ,font=("arial" , 9 ) ).place(x=4.5,y=275) 
+
+
+
+
+import statistics as st
+
+
+
+
+
+                                                       #12 oclock ctdi in  000000000000000000000000000000000000000000000000000000000000000000000000
+xp12=tk.Label(window,
+    text= "   12 oclock" 
+     ,font=("arial" , 12 ) ).place(x=150,y=280)
+
+p121=tk.StringVar()
+p122=tk.StringVar()
+p123=tk.StringVar()
+entryp12= tk.Entry(window,textvariable=p121).place(x=140,y=305)
+entryp12= tk.Entry(window,textvariable=p122).place(x=140,y=330)
+entryp12= tk.Entry(window,textvariable=p123).place(x=140,y=355)
+
+
+                         #6 oclock ctdi in  000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+
+xp6=tk.Label(window,
+    text= "   6 oclock" 
+     ,font=("arial" , 12 ) ).place(x=150,y=480)
+
+p61=tk.StringVar()
+p62=tk.StringVar()
+p63=tk.StringVar()
+entryp6= tk.Entry(window,textvariable=p61).place(x=140,y=505)
+entryp6= tk.Entry(window,textvariable=p62).place(x=140,y=530)
+entryp6= tk.Entry(window,textvariable=p63).place(x=140,y=555)
+
+
+
+                                                 #3 oclock ctdi in    000000000000000000000000000000000000000000000000000000000000000000000000   
+xp3=tk.Label(window,
+    text= "   3 oclock" 
+     ,font=("arial" , 12 ) ).place(x=300,y=380)
+
+p31=tk.StringVar()
+p32=tk.StringVar()
+p33=tk.StringVar()
+entryp3= tk.Entry(window,textvariable=p31).place(x=290,y=405)
+entryp3= tk.Entry(window,textvariable=p32).place(x=290,y=430)
+entryp3= tk.Entry(window,textvariable=p33).place(x=290,y=455)
+
+
+
+                                                         #9 oclock ctdi in  000000000000000000000000000000000000000000000000000000000000000000000000
+xp9=tk.Label(window,
+    text= "   9 oclock" 
+     ,font=("arial" , 12 ) ).place(x=10,y=380)
+
+p91=tk.StringVar()
+p92=tk.StringVar()
+p93=tk.StringVar()
+entryp9= tk.Entry(window,textvariable=p91).place(x=2,y=405)
+entryp9= tk.Entry(window,textvariable=p92).place(x=2,y=430)
+entryp9= tk.Entry(window,textvariable=p93).place(x=2,y=455)    
+
+
+
+                                                             # grand total meen 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  
+  
+def meenp12():
+     pp121=float(p121.get())
+     pp122=float(p122.get())
+     pp123=float(p123.get())
+     pp61=float(p61.get())
+     pp62=float(p62.get())
+     pp63=float(p63.get())
+     pp31=float(p31.get())
+     pp32=float(p32.get())
+     pp33=float(p33.get())
+     pp91=float(p91.get())
+     pp92=float(p92.get())
+     pp93=float(p93.get())
+     taple12=pp121,pp123,pp122,pp61,pp63,pp62,pp31,pp33,pp32,pp91,pp93,pp92
+     mp12=round(st.mean(taple12),3)
+     ppp12.set(mp12)
+     return(mp12)
+
+          
+x9=tk.Button(window,
+              text= " Total mean " 
+       ,font=("arial" , 12 ),background= "cyan"
+     ,width=10
+     ,height=1,command=meenp12 ,relief="sunken").place(x=275,y=580)
+
+
+
+ppp12 =tk.IntVar()   
+meenpp12 = tk.Label(window, textvariable=ppp12 ,font=("arial",12),background="yellow").place(x=280,y=655)
+
+
+x90=tk.Button(window,
+    text= " peripheral " 
+     ,font=("arial" , 12 ) ,background= "cyan"
+     ,width=10
+     ,height=1,command=meenp12 ,relief="sunken").place(x=275,y=610) 
+
+
+
+
+                                                           # center ctdi in 000000000000000000000000000000000000000000000000000000000000000000000000
+
+xc=tk.Label(window,
+    text= "center readings" 
+     ,font=("arial" , 12 ) ).place(x=150,y=380)
+
+c1=tk.StringVar()
+c2=tk.StringVar()
+c3=tk.StringVar()
+entryc1=tk.Entry(window,textvariable=c1).place(x=140,y=405)
+entryc2=tk.Entry(window,textvariable=c2).place(x=140,y=430)
+entryc3=tk.Entry(window,textvariable=c3).place(x=140,y=455)
+
+
+def meenc():
+    cc1=float(c1.get())
+    cc2=float(c2.get())
+    cc3=float(c3.get())
+    taple=cc1,cc2,cc3
+    mc=round(st.mean(taple),3)
+    x8d.set(mc)
+    return(mc)
+
+
+x8=tk.Button(window,
+    text= "mean center" 
+     ,font=("arial" , 12 ),
+     background= "cyan"
+     ,width=10
+     ,height=2,command=meenc,relief="sunken").place(x=2,y=595) 
+     
+x8d =tk.IntVar()   
+
+meencc =tk.Label(window, textvariable=x8d ,font=("arial",12),background="yellow").place(x=10,y=655)
+
+
+
+
+
+
+
+
+
+from math import *
+
+
+
+xxx6=tk.IntVar()
+xx7=tk.IntVar()
+dctdivol=tk.IntVar()
+ddlpe=tk.IntVar()
+entry6 = tk.Entry(window,textvariable=xxx6).place(x=160,y=200)
+entry7 = tk.Entry(window,textvariable=xx7).place(x=160,y=255)
+dcvol= tk.Entry(window,textvariable=dctdivol).place(x=650,y=410)
+ddlp= tk.Entry(window,textvariable=ddlpe).place(x=650,y=460)
+
+
+def calculate ():
+    
+    xx66=float(xxx6.get())
+    xx77=float(xx7.get())
+    
+    kp=float(meenp12())
+    kc=float(meenc())
+    dctdivolx=float(dctdivol.get())
+    ddlpex=float(ddlpe.get())
+
+    ctdi100ppp=kp/(xx66) #*10)
+    ctdi100ccc=kc/(xx66) #*10)
+
+    print("x=", xx77 , xx66) 
+
+    ctdiww=(0.3333333333333333*ctdi100ccc)+(0.6666666666666667*ctdi100ppp)
+    
+
+    ctdivolv=ctdiww/(xx77/1000)   
+
+
+    dlp=ctdivolv*14.5
+
+    errorcvol=((abs(dctdivolx-ctdivolv))/dctdivolx)*100
+
+    errordlp=((abs(dlp-ddlpex))/ddlpex)*100
+
+    print(ctdivolv,ctdiww,ctdi100ccc,ctdi100ppp,xx77 ,xx66 , kc , kp)
+
+    xctdi100ppp= round(ctdi100ppp,3)
+    xctdi100ccc=round(ctdi100ccc,3)
+    xctdiww=round(ctdiww,3)
+    xctdivolv=round(ctdivolv,3)
+    xdlp=round(dlp,3)
+    xerrorcvol=errorcvol
+    xerrordlp=errordlp
+    
+    exrrorcvol=tk.Label(window,text= xerrorcvol 
+      ,font=("arial" , 12 ),background="orange").place(x=680,y=560) 
+
+    exrrordlp=tk.Label(window,text=xerrordlp
+      ,font=("arial" , 12 ),background="orange").place(x=680,y=605)   
+
+    cx100ppp=tk.Label(window,text=xctdi100ppp
+      ,font=("arial" , 12 ),background="orange").place(x=490,y=140) 
+      
+    cxtdi100cccc=tk.Label(window,text=xctdi100ccc
+      ,font=("arial" , 12 ),background="orange").place(x=490,y=90)   
+
+    cxtdiwwww=tk.Label(window,text=xctdiww
+      ,font=("arial" , 12 ),background="orange").place(x=490,y=190)  
+
+    cxtdivolvv=tk.Label(window,text= xctdivolv 
+        ,font=("arial" , 12 ),background="orange").place(x=490,y=240) 
+
+    dlpx=tk.Label(window,text=xdlp 
+      ,font=("arial" , 12 ),background="orange").place(x=490,y=290)    
+
+  
+cal=tk.Button(window,
+     text= "calculate" 
+      ,font=("arial" , 12 ),
+      background= "cyan"
+      ,width=10
+      ,height=2,command=calculate,relief="sunken").place(x=450,y=340) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+dlplaple=tk.Label(window,
+    text= "DLP" 
+    ,font=("arial" , 12 )).place(x=395,y=285)
+
+ctdivolerror=tk.Label(window,
+    text= "CTDIvol error percent" 
+    ,font=("arial" , 12 )).place(x=500,y=560)
+
+dlperror=tk.Label(window,
+    text= "DLP error percent" 
+    ,font=("arial" , 12 )).place(x=505,y=600)
+
+
+x10=tk.Label(window,
+    text= "displayed CTDIvol" 
+    ,font=("arial" , 12 )).place(x=500,y=405)
+
+x11=tk.Label(window,
+    text= "displayed DLP"
+    ,font=("arial" , 12 )).place(x=500,y=455)          
+
+
+scan_length=tk.Label(window,
+    text= "scan length" 
+    ,font=("arial" , 12 )).place(x=500,y=505)
+
+scan_length=tk.Label(window,
+    text= "14.5 cm defult for CTDI phantom" 
+    ,font=("arial" , 12 ),background= "light blue"
+     ,width=30
+     ,height=1).place(x=590,y=510)
+
+
+ctdi100c=tk.Label(window,text= "CTDI100c" 
+    ,font=("arial" , 12 )).place(x=390,y=90)
+
+ctdi100p=tk.Label(window,text= "CTDI100p" 
+    ,font=("arial" , 12 )).place(x=390,y=140)  
+
+ctdiw=tk.Label(window,text= "CTDIw" 
+        ,font=("arial" , 12 )).place(x=390,y=190)  
+
+ctdivol=tk.Label(window,text= "CTDIvol" 
+        ,font=("arial" , 12 )).place(x=390,y=240)   
+
+
+
+def onClick():
+     tk.messagebox.showinfo("contact me","Whats app: 01008881955   mail: Ahmadrefaat790@gmail.com")
+
+button = tk.Button (window,text = "CONTACT DEV", command =onClick ,font=("arial" , 10 ),background= "magenta",width=13,height=2,relief="groove").place(x=600,y=650)
+
+
+window.mainloop()
